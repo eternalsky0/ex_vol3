@@ -39,11 +39,17 @@
     <Reference Include="CaptchaSharp.Services.More, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\CaptchaSharp.Services.More.1.0.6\lib\netstandard2.0\CaptchaSharp.Services.More.dll</HintPath>
     </Reference>
+    <Reference Include="Guna.UI2, Version=2.0.4.6, Culture=neutral, PublicKeyToken=8b9d14aa5142e261, processorArchitecture=MSIL">
+      <HintPath>..\packages\Guna.UI2.WinForms.2.0.4.6\lib\net472\Guna.UI2.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -71,6 +77,12 @@
       <DependentUpon>registration.cs</DependentUpon>
       <Link>registration.Designer.cs</Link>
     </Compile>
+    <Compile Include="Product_str.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Product_str.Designer.cs">
+      <DependentUpon>Product_str.cs</DependentUpon>
+    </Compile>
     <Compile Include="test.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +94,9 @@
     <EmbeddedResource Include="C:\Users\1\Desktop\for db future\log_in.resx">
       <DependentUpon>log_in.cs</DependentUpon>
       <Link>log_in.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Product_str.resx">
+      <DependentUpon>Product_str.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="test.resx">
       <DependentUpon>test.cs</DependentUpon>

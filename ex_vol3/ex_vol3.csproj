@@ -61,6 +61,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="add_product.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="add_product.Designer.cs">
+      <DependentUpon>add_product.cs</DependentUpon>
+    </Compile>
     <Compile Include="C:\Users\1\Desktop\for db future\log_in.cs">
       <Link>log_in.cs</Link>
       <SubType>Form</SubType>
@@ -91,6 +97,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="add_product.resx">
+      <DependentUpon>add_product.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="C:\Users\1\Desktop\for db future\log_in.resx">
       <DependentUpon>log_in.cs</DependentUpon>
       <Link>log_in.resx</Link>

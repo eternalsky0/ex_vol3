@@ -5,6 +5,11 @@ VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ex_vol3", "ex_vol3\ex_vol3.csproj", "{39DDF7E9-F9F0-4EC9-A794-FA1440C7036C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sql connect", "sql connect", "{65EE1855-8FE1-44E5-9491-A8BE7944B850}"
+	ProjectSection(SolutionItems) = preProject
+		sqlconnect.cs = sqlconnect.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

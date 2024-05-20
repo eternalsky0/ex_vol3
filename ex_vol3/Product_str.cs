@@ -21,8 +21,8 @@ namespace ex_vol3
         public Product_str(int productId, string productName, string txtInfo, Image productImage)
 
         {
-
             InitializeComponent();
+
             this.productId = productId;
             this.productName = productName;
             this.productImage = productImage;

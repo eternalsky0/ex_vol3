@@ -160,5 +160,12 @@ namespace ex_vol3
                 return txtInfo;          
             }
         }
+
+        private void add_new_product_button_Click(object sender, EventArgs e)
+        {
+            add_product add_product = new add_product();
+            add_product.Show();
+            this.Hide();
+        }
     }
 }

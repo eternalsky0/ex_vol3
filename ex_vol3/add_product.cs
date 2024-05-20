@@ -18,8 +18,7 @@ namespace ex_vol3
         {
             InitializeComponent();
             LoadContry();
-            LoadFactory();
-            
+            FillFactoryComboBox();
         }
 
         //back to reg button
@@ -34,7 +33,7 @@ namespace ex_vol3
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp; *.png)|*.jpg; *.jpeg; *.gif; *.bmp; *.png";
 
-            if(ofd.ShowDialog() == DialogResult.OK)
+            if (ofd.ShowDialog() == DialogResult.OK)
             {
                 pictureBox1.Image = Image.FromFile(ofd.FileName);
             }
@@ -54,19 +53,64 @@ namespace ex_vol3
             }
         }
         //combobox factory
-        private void LoadFactory()
+        public class Manufacturer
+        {
+            public int ID { get; set; }
+            public string Name { get; set; }
+            public override string ToString()
+            {
+                return Name;
+            }
+        }
+        private void FillFactoryComboBox()
         {
             using (SqlCommand cmd = new SqlCommand("SELECT manufacturerID, factory FROM manufacturer", con))
             {
                 con.Open();
-                SqlDataReader rdr = cmd.ExecuteReader();
-                while (rdr.Read())
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
                 {
-                    factory_ComboBox.Items.Add(rdr["factory"].ToString());
+                    int id = reader.GetInt32(0);
+                    string name = reader.GetString(1);
+                    factory_ComboBox.Items.Add(new Manufacturer { ID = id, Name = name });
                 }
                 con.Close();
             }
+        }
+        private void button_upload_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(name_product_TextBox.Text) || string.IsNullOrWhiteSpace(richTextBox_inf.Text) || factory_ComboBox.SelectedItem == null)
+            {
+                MessageBox.Show("Please fill in all fields.");
+                return;
+            }
+            var selectedFactory = (Manufacturer)factory_ComboBox.SelectedItem;
+            int manufacturerID = selectedFactory.ID;
+            string name = name_product_TextBox.Text;
+            string info = richTextBox_inf.Text;
 
+            using (SqlCommand cmd = new SqlCommand("INSERT INTO product (name_product, txt_info, manufacturerID) VALUES (@name, @info, @manufacturerID)", con))
+
+            {
+                cmd.Parameters.AddWithValue("@name", name);
+                cmd.Parameters.AddWithValue("@info", info);
+                cmd.Parameters.AddWithValue("@manufacturerID", manufacturerID);
+
+                con.Open();
+
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                con.Close();
+
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Product added successfully.");
+                }
+                else
+                {
+                    MessageBox.Show("Failed to add product.");
+                }
+            }
         }
     }
 }

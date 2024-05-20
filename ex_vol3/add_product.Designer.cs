@@ -39,7 +39,7 @@
             this.button_back = new System.Windows.Forms.Button();
             this.button_select = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button_upload = new System.Windows.Forms.Button();
             this.factory_ComboBox = new Guna.UI2.WinForms.Guna2ComboBox();
             this.country_ComboBox = new Guna.UI2.WinForms.Guna2ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -118,6 +118,7 @@
             this.name_product_TextBox.ForeColor = System.Drawing.Color.Black;
             this.name_product_TextBox.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.name_product_TextBox.Location = new System.Drawing.Point(562, 95);
+            this.name_product_TextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.name_product_TextBox.MaxLength = 50;
             this.name_product_TextBox.Name = "name_product_TextBox";
             this.name_product_TextBox.PasswordChar = '\0';
@@ -165,14 +166,15 @@
             this.label6.TabIndex = 14;
             this.label6.Text = "photo";
             // 
-            // button1
+            // button_upload
             // 
-            this.button1.Location = new System.Drawing.Point(305, 529);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(169, 49);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "UPLOAD PRODUCT";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button_upload.Location = new System.Drawing.Point(305, 529);
+            this.button_upload.Name = "button_upload";
+            this.button_upload.Size = new System.Drawing.Size(169, 49);
+            this.button_upload.TabIndex = 15;
+            this.button_upload.Text = "UPLOAD PRODUCT";
+            this.button_upload.UseVisualStyleBackColor = true;
+            this.button_upload.Click += new System.EventHandler(this.button_upload_Click);
             // 
             // factory_ComboBox
             // 
@@ -211,7 +213,7 @@
             this.ClientSize = new System.Drawing.Size(902, 644);
             this.Controls.Add(this.country_ComboBox);
             this.Controls.Add(this.factory_ComboBox);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.button_upload);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.button_select);
             this.Controls.Add(this.button_back);
@@ -243,8 +245,8 @@
         private System.Windows.Forms.Button button_back;
         private System.Windows.Forms.Button button_select;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button button1;
-        private Guna.UI2.WinForms.Guna2ComboBox factory_ComboBox;
+        private System.Windows.Forms.Button button_upload;
         private Guna.UI2.WinForms.Guna2ComboBox country_ComboBox;
+        private Guna.UI2.WinForms.Guna2ComboBox factory_ComboBox;
     }
 }

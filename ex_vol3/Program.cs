@@ -16,7 +16,7 @@ namespace ex_vol3
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new add_product());
+            Application.Run(new main());
         }
     }
 }

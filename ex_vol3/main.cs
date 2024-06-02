@@ -12,16 +12,23 @@ using System.Windows.Forms;
 
 namespace ex_vol3
 {
-    public partial class test : Form
+    public partial class main : Form
     {
         private BindingSource productsBindingSource = new BindingSource();
+        private DataTable productsTable;
         SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-EAONQ68; Initial Catalog=military; Integrated Security=True");
         
-        public test()
+        public main()
         {
             InitializeComponent();
-            productsBindingSource.DataSource = CreateDataTable();
+            productsTable = CreateDataTable();
+            productsBindingSource.DataSource = productsTable;
             dataGridView1.DataSource = productsBindingSource;
+
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximumSize = this.MinimumSize = this.Size;
+            this.MaximizeBox = false;
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         //вывод таблицы
@@ -39,14 +46,9 @@ namespace ex_vol3
             productsTable.Columns.Add("Quantity", typeof(int));
 
             {
-                using (SqlCommand cmd = new SqlCommand("SELECT product.productID, product.name_product as Name, manufacturer.factory, availability1.quantity, country.country as Country " +
-
+                using (SqlCommand cmd = new SqlCommand("SELECT product.productID, product.name_product as Name, manufacturer.factory, product.quantity, country.country as Country " +
                                                                         "FROM product " +
-
                                                                         "JOIN manufacturer ON product.manufacturerID = manufacturer.manufacturerID " +
-
-                                                                        "JOIN availability1 ON availability1.productID = product.productID " +
-
                                                                         "JOIN country ON manufacturer.countryID = country.countryID", con))
                 {
                     using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
@@ -60,36 +62,44 @@ namespace ex_vol3
         //сохранение изменений данных
         private void save_change_buton_Click(object sender, EventArgs e)
         {
-            try
+            bool changesMade = false;
+
+            foreach (DataRow row in productsTable.Rows)
             {
-                con.Open();
-                foreach (DataGridViewRow row in dataGridView1.Rows)
+                if (row.RowState == DataRowState.Modified)
                 {
-                    var quantityValue = row.Cells["Quantity"].Value;
-
-                    if (quantityValue != null && (int)quantityValue >= 0)
-                    {
-                        int newQuantity = Convert.ToInt32(row.Cells["Quantity"].Value);
-                        int productID = Convert.ToInt32(row.Cells["ProductID"].Value);
-
-                        string updateQuery = "UPDATE availability1 SET quantity = @quantity WHERE productID = @productID";
-
-                        using (SqlCommand cmd = new SqlCommand(updateQuery, con))
-                        {
-                            cmd.Parameters.AddWithValue("@quantity", newQuantity);
-                            cmd.Parameters.AddWithValue("@productID", productID);
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
+                    changesMade = true;
+                    break;
                 }
-                con.Close();
-                MessageBox.Show("Сохранения внесены успешно!");
-            }
-            catch
-            {
-                MessageBox.Show("error");
             }
 
+            if (!changesMade)
+            {
+                MessageBox.Show("Вы не внесли никаких изменений. Пожалуйста, внесите изменения и повторите попытку.", "Ошибка", MessageBoxButtons.OK);
+                return;
+            }
+
+            DialogResult result = MessageBox.Show("Вы действительно хотите сохранить изменения?", "Подтверждение", MessageBoxButtons.YesNo);
+            if (result == DialogResult.No)
+            {
+                productsTable.RejectChanges();
+                dataGridView1.Refresh();
+            }
+            else
+            {
+                using (SqlCommand cmd = new SqlCommand("UPDATE product SET quantity = @quantity WHERE productID = @productID", con))
+                {
+                    con.Open();
+                    foreach (DataRow row in productsTable.Rows)
+                    {
+                        cmd.Parameters.Clear();
+                        cmd.Parameters.AddWithValue("@productID", row["ProductID"]);
+                        cmd.Parameters.AddWithValue("@quantity", row["Quantity"]);
+                        cmd.ExecuteNonQuery();
+                    }
+                    con.Close();
+                }
+            }
         }
 
         //открытие информации о продукте
@@ -104,17 +114,15 @@ namespace ex_vol3
                 string productName = row.Cells["Name"].Value.ToString();
 
                 string txtInfo = GetTxt(productId);
-                // Получаем изображение из базы данных
 
+                // Получаем изображение из базы данных
                 byte[] imageData = GetImageDataFromDatabase(productId);
 
                 // Преобразуем бинарные данные в изображение
-
                 Image productImage = byteArrayToImage(imageData);
 
                 // Передаем id, имя и изображение товара в форму Product_str
-
-                Product_str Product_str = new Product_str(productId, productName, txtInfo, productImage);
+                Product_view Product_str = new Product_view(productId, productName, txtInfo, productImage);
                 Product_str.ShowDialog();
             }
         }

@@ -51,10 +51,10 @@
             // 
             this.productNameLabel.AutoSize = true;
             this.productNameLabel.BackColor = System.Drawing.SystemColors.Window;
-            this.productNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.productNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.productNameLabel.Location = new System.Drawing.Point(107, 335);
             this.productNameLabel.Name = "productNameLabel";
-            this.productNameLabel.Size = new System.Drawing.Size(201, 24);
+            this.productNameLabel.Size = new System.Drawing.Size(220, 24);
             this.productNameLabel.TabIndex = 6;
             this.productNameLabel.Text = "dasddasdsadasdasdas";
             this.productNameLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -72,18 +72,20 @@
             // id_label
             // 
             this.id_label.AutoSize = true;
-            this.id_label.Location = new System.Drawing.Point(649, 346);
+            this.id_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.id_label.Location = new System.Drawing.Point(632, 346);
             this.id_label.Name = "id_label";
-            this.id_label.Size = new System.Drawing.Size(60, 13);
+            this.id_label.Size = new System.Drawing.Size(71, 13);
             this.id_label.TabIndex = 9;
             this.id_label.Text = "ID product:";
             // 
             // label_id2
             // 
             this.label_id2.AutoSize = true;
-            this.label_id2.Location = new System.Drawing.Point(704, 346);
+            this.label_id2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label_id2.Location = new System.Drawing.Point(697, 346);
             this.label_id2.Name = "label_id2";
-            this.label_id2.Size = new System.Drawing.Size(35, 13);
+            this.label_id2.Size = new System.Drawing.Size(41, 13);
             this.label_id2.TabIndex = 10;
             this.label_id2.Text = "label1";
             // 

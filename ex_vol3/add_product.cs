@@ -19,6 +19,8 @@ namespace ex_vol3
     public partial class add_product : Form
     {
         private SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-EAONQ68; Initial Catalog=military; Integrated Security=True");
+
+        private Image previousImage;
         public add_product()
         {
             InitializeComponent();
@@ -34,8 +36,10 @@ namespace ex_vol3
         //back to reg button
         private void button_back_Click_1(object sender, EventArgs e)
         {
-            main test = new main();
-            test.Show(); this.Hide();
+            main main = new main();
+            //main.InitializeProductTable();
+            main.Show();
+            this.Hide();
         }
         //image select
         private void button_select_Click(object sender, EventArgs e)
@@ -130,6 +134,10 @@ namespace ex_vol3
                     richTextBox_inf.Clear();
                     factory_ComboBox.Items.Clear();
                     country_ComboBox.Items.Clear();
+                    pictureBox1.Image = null;
+
+                    LoadContry();
+                    FillFactoryComboBox();
                 }
                 else
                 {
@@ -172,7 +180,7 @@ namespace ex_vol3
                 new
                 {
                     role = "system",
-                    content = "You are an expert in military affairs and aircraft (such as drones and so on). you need to tell information about a given object. if it is not related to drones or military equipment, then write no such thing"
+                    content = "You are an expert in military affairs and aviation (eg drones, etc.). you need to provide information about this object. if this does not apply to drones or military equipment, then write an error and nothing more"
                 },
                 new
                 {

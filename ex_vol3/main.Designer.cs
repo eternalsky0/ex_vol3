@@ -37,10 +37,11 @@
             this.add_new_product_button = new System.Windows.Forms.Button();
             this.delete_product_button = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.users_db_button = new System.Windows.Forms.Button();
             this.product_button = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.delete_users_button = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.save_change_button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -113,6 +114,7 @@
             this.delete_product_button.TabIndex = 6;
             this.delete_product_button.Text = "delete product";
             this.delete_product_button.UseVisualStyleBackColor = true;
+            this.delete_product_button.Click += new System.EventHandler(this.delete_product_button_Click);
             // 
             // pictureBox1
             // 
@@ -124,15 +126,16 @@
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
             // 
-            // button1
+            // users_db_button
             // 
-            this.button1.Font = new System.Drawing.Font("Bookman Old Style", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(10, 218);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(151, 43);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "users db";
-            this.button1.UseVisualStyleBackColor = true;
+            this.users_db_button.Font = new System.Drawing.Font("Bookman Old Style", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.users_db_button.Location = new System.Drawing.Point(10, 218);
+            this.users_db_button.Name = "users_db_button";
+            this.users_db_button.Size = new System.Drawing.Size(151, 43);
+            this.users_db_button.TabIndex = 8;
+            this.users_db_button.Text = "users db";
+            this.users_db_button.UseVisualStyleBackColor = true;
+            this.users_db_button.Click += new System.EventHandler(this.users_db_button_Click);
             // 
             // product_button
             // 
@@ -143,16 +146,18 @@
             this.product_button.TabIndex = 9;
             this.product_button.Text = "product view";
             this.product_button.UseVisualStyleBackColor = true;
+            this.product_button.Click += new System.EventHandler(this.product_button_Click);
             // 
-            // button2
+            // delete_users_button
             // 
-            this.button2.Font = new System.Drawing.Font("Bookman Old Style", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.Location = new System.Drawing.Point(499, 649);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(151, 43);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "delete users";
-            this.button2.UseVisualStyleBackColor = true;
+            this.delete_users_button.Font = new System.Drawing.Font("Bookman Old Style", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.delete_users_button.Location = new System.Drawing.Point(185, 649);
+            this.delete_users_button.Name = "delete_users_button";
+            this.delete_users_button.Size = new System.Drawing.Size(151, 43);
+            this.delete_users_button.TabIndex = 10;
+            this.delete_users_button.Text = "delete users";
+            this.delete_users_button.UseVisualStyleBackColor = true;
+            this.delete_users_button.Click += new System.EventHandler(this.delete_users_button_Click);
             // 
             // label2
             // 
@@ -165,16 +170,28 @@
             this.label2.TabIndex = 11;
             this.label2.Text = "Данные";
             // 
+            // save_change_button2
+            // 
+            this.save_change_button2.Font = new System.Drawing.Font("Bookman Old Style", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.save_change_button2.Location = new System.Drawing.Point(519, 552);
+            this.save_change_button2.Name = "save_change_button2";
+            this.save_change_button2.Size = new System.Drawing.Size(119, 43);
+            this.save_change_button2.TabIndex = 12;
+            this.save_change_button2.Text = "save change";
+            this.save_change_button2.UseVisualStyleBackColor = true;
+            this.save_change_button2.Click += new System.EventHandler(this.save_change_button2_Click);
+            // 
             // main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1056, 704);
+            this.Controls.Add(this.save_change_button2);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.delete_users_button);
             this.Controls.Add(this.product_button);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.users_db_button);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.delete_product_button);
             this.Controls.Add(this.add_new_product_button);
@@ -197,9 +214,10 @@
         private System.Windows.Forms.Button add_new_product_button;
         private System.Windows.Forms.Button delete_product_button;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button users_db_button;
         private System.Windows.Forms.Button product_button;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button delete_users_button;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button save_change_button2;
     }
 }

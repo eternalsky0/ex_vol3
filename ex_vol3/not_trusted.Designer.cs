@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(not_trusted));
             this.label5 = new System.Windows.Forms.Label();
             this.log_in_back_button = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -61,8 +62,8 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.log_in_back_button);
             this.Controls.Add(this.label5);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "not_trusted";
-            this.Text = "not_trusted";
             this.ResumeLayout(false);
             this.PerformLayout();
 

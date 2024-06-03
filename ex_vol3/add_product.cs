@@ -37,7 +37,7 @@ namespace ex_vol3
         private void button_back_Click_1(object sender, EventArgs e)
         {
             main main = new main();
-            //main.InitializeProductTable();
+            main.GoProduct();
             main.Show();
             this.Hide();
         }

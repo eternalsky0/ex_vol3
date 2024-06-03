@@ -257,6 +257,10 @@ namespace ex_vol3
         //переход на продукт
         private void product_button_Click(object sender, EventArgs e)
         {
+            GoProduct();
+        }
+        public void GoProduct()
+        {
             productsTable = CreateDataTable_product();
             productsBindingSource.DataSource = productsTable;
             dataGridView1.DataSource = productsBindingSource;
@@ -298,29 +302,48 @@ namespace ex_vol3
             DialogResult result = MessageBox.Show("Вы действительно хотите сохранить изменения?", "Подтверждение", MessageBoxButtons.YesNo);
             if (result == DialogResult.No)
             {
-                usersTable.RejectChanges();
-                dataGridView1.Refresh();
+                errorUserDB();
             }
             else
             {
-                con.Open();
-                SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM users1", con);
+                try
+                {
+                    con.Open();
 
-                SqlCommand updateCommand = new SqlCommand("UPDATE users1 SET login = @login, real_name = @real_name, roleID = @roleID WHERE userID = @userID", con);
-                updateCommand.Parameters.Add("@roleID", SqlDbType.Int, 0, "RoleID");
-                updateCommand.Parameters.Add("@login", SqlDbType.VarChar, 50, "Login");
-                updateCommand.Parameters.Add("@real_name", SqlDbType.VarChar, 50, "RealName");
-                updateCommand.Parameters.Add("@userID", SqlDbType.Int, 0, "UserID");
+                    SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM users1", con);
 
-                adapter.UpdateCommand = updateCommand;
+                    SqlCommand updateCommand = new SqlCommand("UPDATE users1 SET login = @login, real_name = @real_name, roleID = @roleID WHERE userID = @userID", con);
 
-                SqlCommand deleteCommand = new SqlCommand("DELETE FROM users1 WHERE userID = @userID", con);
-                deleteCommand.Parameters.Add("@userID", SqlDbType.Int, 0, "UserID");
-                adapter.DeleteCommand = deleteCommand;
-                adapter.Update(usersTable);
+                    updateCommand.Parameters.Add("@roleID", SqlDbType.Int, 0, "RoleID");
+                    updateCommand.Parameters.Add("@login", SqlDbType.VarChar, 50, "Login");
+                    updateCommand.Parameters.Add("@real_name", SqlDbType.VarChar, 50, "RealName");
+                    updateCommand.Parameters.Add("@userID", SqlDbType.Int, 0, "UserID");
 
-                con.Close();
+                    adapter.UpdateCommand = updateCommand;
+
+                    SqlCommand deleteCommand = new SqlCommand("DELETE FROM users1 WHERE userID = @userID", con);
+                    deleteCommand.Parameters.Add("@userID", SqlDbType.Int, 0, "UserID");
+                    adapter.DeleteCommand = deleteCommand;
+                    adapter.Update(usersTable);
+
+                    con.Close();
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Ошибка при обновлении данных: " + ex.Message);
+                    errorUserDB();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ошибка: " + ex.Message);
+                    errorUserDB();
+                }
             }
+        }
+        private void errorUserDB()
+        {
+            usersTable.RejectChanges();
+            dataGridView1.Refresh();
         }
 
         private void delete_users_button_Click(object sender, EventArgs e)

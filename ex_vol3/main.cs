@@ -258,6 +258,8 @@ namespace ex_vol3
         private void product_button_Click(object sender, EventArgs e)
         {
             GoProduct();
+            ShowButton();
+            delete_users_button.Visible = false;
         }
         public void GoProduct()
         {
@@ -267,6 +269,7 @@ namespace ex_vol3
 
             ShowButton();
             delete_users_button.Visible = false;
+            save_change_button2.Visible = false;
         }
 
         //переход на юзерс
